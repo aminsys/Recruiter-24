@@ -31,10 +31,8 @@ public partial class ApplicantsPage : ContentPage
                 Applicants = await res.Content.ReadFromJsonAsync<ObservableCollection<Applicant>>();
                 var query = Applicants.Where(a => a.Experience.Any(e => e.TechnologyId == guid) && a.Experience.Any(e => e.YearsOfExperience >= yoe));
                 Debug.WriteLine("Query contains: " + query.Count());
-                foreach (var item in query)
-                {
-                    fullNamelbl.Text = item.FullName;
-                }
+                collectionView.ItemsSource = query;
+                
                 return new ObservableCollection<Applicant>(query);
             }
         }

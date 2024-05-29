@@ -8,32 +8,43 @@ namespace Recruiter24;
 
 public partial class MainPage : ContentPage
 {
-	public Collection<Technology> Filter { get; set; } = new();
+	public static ObservableCollection<Technology> Filter { get; set; } = new();
 
 	public MainPage()
 	{
         InitializeComponent();
-		GetFilterCriteria();
     }
 
-    public async void GetFilterCriteria()
+	protected override async void OnAppearing()
 	{
+        Filter = await GetFilterCriteria();
+		foreach (var item in Filter)
+		{
+			Debug.WriteLine(item.Name);
+		}
+        picker.ItemsSource = Filter;
+        picker.ItemDisplayBinding = new Binding("Name");
+
+    }
+
+    public async Task<ObservableCollection<Technology>> GetFilterCriteria()
+	{
+        ObservableCollection<Technology> filter = null;
 		try
 		{
             using (HttpClient client = new HttpClient())
             {
                 HttpResponseMessage res = await client.GetAsync("https://app.ifs.aero/EternalBlue/api/technologies");
                 res.EnsureSuccessStatusCode();
-                Filter = await res.Content.ReadFromJsonAsync<Collection<Technology>>();
-                picker.ItemsSource = Filter;
-                picker.ItemDisplayBinding = new Binding("Name");
+                filter = await res.Content.ReadFromJsonAsync<ObservableCollection<Technology>>();
             }
+			return filter;
         }
 		catch (Exception e)
 		{
 			Debug.WriteLine("Error accorred: " + e.Message);
-		}
-		
+			return new ObservableCollection<Technology>();
+        }		
     }
 
 	private async void OnFilterClicked(object sender, EventArgs e)
