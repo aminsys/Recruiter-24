@@ -17,8 +17,8 @@
                 HorizontalOptions="Center" />
 
             <Label
-                Text="Welcome to Recruit 24 MAUI app"
-                FontSize="32"
+                Text="Welcome to Recruiter 24"
+                FontSize="24"
                 HorizontalOptions="Center" />
 
             <Label
@@ -34,7 +34,7 @@
                         MinimumWidthRequest="100"
                         Margin="0,0,10,0" SelectedItem="1"/>
 
-                <Entry x:Name="experience"
+                <Entry x:Name="experience" Keyboard="Numeric"
                        Placeholder="Years of exp"
                        MinimumWidthRequest="100"
                        Margin="10,13,0,0"/>

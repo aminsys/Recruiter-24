@@ -10,7 +10,7 @@
                     <SwipeView>
                         <SwipeView.RightItems>
                             <SwipeItems>
-                                <SwipeItem IsEnabled="True" Text="Delete" BackgroundColor="Red" Invoked="Delete_Invoked" />
+                                <SwipeItem Text="Delete" BackgroundColor="Red" Invoked="Delete_Invoked" />
                             </SwipeItems>
                         </SwipeView.RightItems>
                         <SwipeView.LeftItems>
@@ -27,23 +27,25 @@
                                     <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Label Text="{Binding FullName, StringFormat='{0}'}" Grid.Column="0" Grid.Row="0" FontSize="32" />
+                                <Label Text="{Binding FullName, StringFormat='{0}'}" Grid.Column="0" Grid.Row="0" FontSize="20" />
 
                                 <Image Source="{Binding ProfilePicture}" 
-                                       Grid.Column="2" Grid.Row="0" WidthRequest="100" HeightRequest="100" HorizontalOptions="EndAndExpand" />
+                                       Grid.Column="2" Grid.Row="0" WidthRequest="100" HeightRequest="100" HorizontalOptions="End" />
 
-                                <Label Text="Tech stack:" Grid.Column="0" Grid.Row="1" FontSize="Medium" CharacterSpacing="4"/>
-                                <StackLayout Grid.Row="2" Grid.Column="0">
-                                    <CollectionView ItemsSource="{Binding Experience}">
+                                <Label Text="Tech stack:" Grid.Column="0" Grid.Row="1" FontSize="Medium" CharacterSpacing="3"/>
+                            <StackLayout Grid.Row="2" Grid.Column="0">
+                                <Line StrokeDashOffset="6" Stroke="Black" X1="0" X2="200"/>
+
+                                <CollectionView ItemsSource="{Binding Experience}">
                                         <CollectionView.ItemTemplate>
                                             <DataTemplate>
                                                 <Grid>
                                                     <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="2*"/>
                                                         <ColumnDefinition Width="*"/>
                                                     </Grid.ColumnDefinitions>
                                                     <Label Text="{Binding TechnologyName}" Grid.Column="0" />
