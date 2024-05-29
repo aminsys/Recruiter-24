@@ -18,10 +18,6 @@ public partial class MainPage : ContentPage
 	protected override async void OnAppearing()
 	{
         Filter = await GetFilterCriteria();
-		foreach (var item in Filter)
-		{
-			Debug.WriteLine(item.Name);
-		}
         picker.ItemsSource = Filter;
         picker.ItemDisplayBinding = new Binding("Name");
 
@@ -49,13 +45,8 @@ public partial class MainPage : ContentPage
 
 	private async void OnFilterClicked(object sender, EventArgs e)
 	{
-		Debug.WriteLine("This is a test result of clicking a button.");
-		Debug.WriteLine("Experience? " + experience.Text);
 		var selectedTechnology = picker.SelectedItem as Technology;
-        Debug.WriteLine("Selected Item? " + selectedTechnology.Name);
-
-		// Open a new view
-		
+	
 		await Navigation.PushAsync(new ApplicantsPage(Int32.Parse(experience.Text), selectedTechnology));
 	}
 

@@ -4,23 +4,22 @@
              x:Class="Recruiter24.View.ApplicantsPage"
              Title="Applicants view">
     
-    <ScrollView>
         <CollectionView x:Name="collectionView">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <SwipeView>
                         <SwipeView.RightItems>
                             <SwipeItems>
-                                <SwipeItem Text="Delete" BackgroundColor="Red" />
+                                <SwipeItem IsEnabled="True" Text="Delete" BackgroundColor="Red" Invoked="Delete_Invoked" />
                             </SwipeItems>
                         </SwipeView.RightItems>
                         <SwipeView.LeftItems>
                             <SwipeItems>
-                                <SwipeItem Text="Save" BackgroundColor="LightGreen" />
+                                <SwipeItem Text="Save" BackgroundColor="LightGreen" Invoked="Save_Invoked" />
                             </SwipeItems>
                         </SwipeView.LeftItems>
 
-                        <Frame Margin="10" BackgroundColor="DarkGray">
+                        <Frame Margin="10" Padding="25">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*" />
@@ -35,7 +34,7 @@
                                 <Label Text="{Binding FullName, StringFormat='{0}'}" Grid.Column="0" Grid.Row="0" FontSize="32" />
 
                                 <Image Source="{Binding ProfilePicture}" 
-               Grid.Column="2" Grid.Row="0" WidthRequest="100" HeightRequest="100" HorizontalOptions="EndAndExpand" />
+                                       Grid.Column="2" Grid.Row="0" WidthRequest="100" HeightRequest="100" HorizontalOptions="EndAndExpand" />
 
                                 <Label Text="Tech stack:" Grid.Column="0" Grid.Row="1" FontSize="Medium" CharacterSpacing="4"/>
                                 <StackLayout Grid.Row="2" Grid.Column="0">
@@ -61,6 +60,5 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </ScrollView>
 
 </ContentPage>

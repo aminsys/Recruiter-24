@@ -13,18 +13,16 @@
             <Image
                 Source="recruit24logo.png"
                 SemanticProperties.Description="logo"
-                HeightRequest="250"
+                HeightRequest="200"
                 HorizontalOptions="Center" />
 
             <Label
                 Text="Welcome to Recruit 24 MAUI app"
-                SemanticProperties.HeadingLevel="Level1"
                 FontSize="32"
                 HorizontalOptions="Center" />
 
             <Label
                 Text="Please choose the desired criteria for candidates"
-                SemanticProperties.HeadingLevel="Level2"
                 FontSize="18"
                 HorizontalOptions="Center" />
             
@@ -40,14 +38,13 @@
                        Placeholder="Years of exp"
                        MinimumWidthRequest="100"
                        Margin="10,13,0,0"/>
+
+                <Button
+                        x:Name="ApplyFilterBtn"
+                        Text="Apply"
+                        Clicked="OnFilterClicked"
+                        HorizontalOptions="Center" Margin="10,13,0,0"/>
             </HorizontalStackLayout>
-
-            <Button
-                x:Name="ApplyFilterBtn"
-                Text="Apply"
-                Clicked="OnFilterClicked"
-                HorizontalOptions="Center" />
-
         </VerticalStackLayout>
     </ScrollView>
 

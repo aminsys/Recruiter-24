@@ -18,7 +18,6 @@ public partial class ApplicantsPage : ContentPage
     {
         InitializeComponent();
         _ = GetApplicants(technology.Guid, yearsOfExperience);
-        Debug.WriteLine("From class Applicants: " + technology.Name +" "+ technology.Guid);
     }
 
     public async Task<ObservableCollection<Applicant>> GetApplicants(Guid guid, int yoe)
@@ -30,7 +29,6 @@ public partial class ApplicantsPage : ContentPage
                 HttpResponseMessage res = await client.GetAsync("https://app.ifs.aero/EternalBlue/api/candidates");
                 Applicants = await res.Content.ReadFromJsonAsync<ObservableCollection<Applicant>>();
                 var query = Applicants.Where(a => a.Experience.Any(e => e.TechnologyId == guid) && a.Experience.Any(e => e.YearsOfExperience >= yoe));
-                Debug.WriteLine("Query contains: " + query.Count());
                 collectionView.ItemsSource = query;
                 
                 return new ObservableCollection<Applicant>(query);
@@ -42,6 +40,17 @@ public partial class ApplicantsPage : ContentPage
             return new ObservableCollection<Applicant>();
         }
         
+
+    }
+
+    private void Delete_Invoked(object sender, EventArgs e)
+    {
+        Debug.WriteLine("Delete swipe");
+    }
+
+    private void Save_Invoked(object sender, EventArgs e)
+    {
+        Debug.WriteLine("Save swipe");
 
     }
 }
